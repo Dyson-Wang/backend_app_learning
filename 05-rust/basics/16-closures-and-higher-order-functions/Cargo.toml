@@ -1,0 +1,6 @@
+[package]
+name = "brm-16-closures-and-higher-order-functions"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

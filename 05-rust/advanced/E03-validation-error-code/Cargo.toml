@@ -1,0 +1,6 @@
+[package]
+name = "brm-e03-validation-error-code"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

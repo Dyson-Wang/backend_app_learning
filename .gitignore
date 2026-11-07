@@ -1,0 +1,25 @@
+# Go
+bin/
+*.test
+*.out
+
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Java
+*.class
+out/
+
+# Rust
+target/
+
+# 本地环境与密钥
+.env
+*.local
+.DS_Store

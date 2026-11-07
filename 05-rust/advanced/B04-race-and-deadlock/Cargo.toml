@@ -1,0 +1,6 @@
+[package]
+name = "brm-b04-race-and-deadlock"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
