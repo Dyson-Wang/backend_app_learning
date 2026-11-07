@@ -49,3 +49,11 @@ go run ./advanced/A02-timeout-retry-backoff
 ```
 
 相关底座概念见 `../../../00-foundations/`。做完把差异结论补到 `../../../99-cross-language/scenario-matrix.md`。
+
+## 和其他语言的差异
+
+| 机制 | Go | Node.js | Python | Java | Rust |
+|---|---|---|---|---|---|
+| 超时载体 | `context.WithTimeout` | `AbortSignal.timeout` | `asyncio.timeout` | `orTimeout` | `tokio::time::timeout` |
+| 退避库 | `backoff` | `p-retry` | `tenacity` | Resilience4j | `backoff` crate |
+| 永久错误识别 | `errors.Is` + 哨兵 | 自定义 error 类 | 异常类型 | 异常子类 | enum |

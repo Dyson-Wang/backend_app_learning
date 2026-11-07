@@ -53,3 +53,11 @@ go run -race ./advanced/A01-rate-limiting
 ```
 
 相关底座概念见 `../../../00-foundations/`。做完把差异结论补到 `../../../99-cross-language/scenario-matrix.md`。
+
+## 和其他语言的差异
+
+| 机制 | Go | Node.js | Python | Java | Rust |
+|---|---|---|---|---|---|
+| 限流实现 | `x/time/rate` | 手写令牌桶 | `slowapi` / 手写 | Guava `RateLimiter` | `governor` crate |
+| 单机 vs 分布式 | 单机内存 + Redis 兜底 | 同 | 同 | 同 | 同 |
+| 拒绝策略 | 429 + `Retry-After` | 同 | 同 | 同 | 同 |

@@ -76,17 +76,17 @@ backend-roadmap/
 | 目录骨架 / 总索引 | 完成 |
 | `00-foundations/` 六块文档与配置 | 完成 |
 | Go `basics/` | 24/24 |
-| Go `advanced/` | 10/30 |
+| Go `advanced/` | 28/28 |
 | TypeScript / Node.js `basics/` | 24/24 |
-| TypeScript / Node.js `advanced/` | 8/30 |
+| TypeScript / Node.js `advanced/` | 28/28 |
 | Python `basics/` | 24/24 |
-| Python `advanced/` | 8/30 |
+| Python `advanced/` | 28/28 |
 | Java `basics/` | 24/24 |
-| Java `advanced/` | 8/30 |
+| Java `advanced/` | 28/28 |
 | Rust `basics/` | 24/24 |
-| Rust `advanced/` | 8/30 |
+| Rust `advanced/` | 28/28 |
 | `06-elective/` | 说明已完成，代码未开始 |
-| `99-cross-language/` | 矩阵自动生成，差异结论随场景补齐 |
+| `99-cross-language/` | 矩阵自动生成，28 个场景 + 24 课结论已填满 |
 <!-- PROGRESS:END -->
 
 ## 本机环境（2026-11-08）
@@ -110,6 +110,6 @@ backend-roadmap/
 
 1. 先读 `00-foundations/request-lifecycle.md`，建立「一个请求从进入到返回」的链路心智
 2. 从 `01-go/basics/01-hello-and-toolchain/` 开始，按顺序做完 24 课；11-24 是语法细节与语言特性，别跳
-3. 做 `01-go/advanced/` 里已实现的 10 个场景，每个都先自己想「错在哪」再看正确写法
+3. 做 `01-go/advanced/` 的 28 个场景，每个都先自己想「错在哪」再看正确写法
 4. 换下一门语言时，打开相同编号的目录对照着写；`basics/13`、`14`、`20`、`21` 的横向差异最大
-5. 每完成一个场景，把差异结论补进 `99-cross-language/scenario-matrix.md`
+5. 对照 `99-cross-language/scenario-matrix.md` 里已填的差异结论，检验自己的理解是否一致

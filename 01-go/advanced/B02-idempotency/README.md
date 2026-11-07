@@ -54,3 +54,11 @@ go run -race ./advanced/B02-idempotency   # 验证没有数据竞争
 ```
 
 相关底座概念见 `../../../00-foundations/`。做完把差异结论补到 `../../../99-cross-language/scenario-matrix.md`。
+
+## 和其他语言的差异
+
+| 机制 | Go | Node.js | Python | Java | Rust |
+|---|---|---|---|---|---|
+| 占位原语 | `singleflight` | Promise Map | `threading.Event` | `putIfAbsent` | `Mutex` + `Condvar` |
+| 落库保证 | 唯一索引 + `ON CONFLICT` | 同 | 同 | 同 | 同 |
+| 常见坑 | 忘存响应体 | 忘存响应体 | 忘存响应体 | 事务里吞异常 | 忘存响应体 |

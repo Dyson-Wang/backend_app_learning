@@ -46,3 +46,11 @@ go run ./advanced/A04-graceful-shutdown
 ```
 
 相关底座概念见 `../../../00-foundations/`。做完把差异结论补到 `../../../99-cross-language/scenario-matrix.md`。
+
+## 和其他语言的差异
+
+| 机制 | Go | Node.js | Python | Java | Rust |
+|---|---|---|---|---|---|
+| 触发 | `signal.NotifyContext` | `process.on('SIGTERM')` | `signal.signal` | shutdown hook | `tokio::signal` |
+| 等待在途 | `srv.Shutdown(ctx)` | `server.close()` | `server.shutdown()` | `server.stop(grace)` | `with_graceful_shutdown` |
+| 强制兜底 | `ctx` 超时后 `Close()` | `closeAllConnections()` | `server_close()` | `stop(0)` | 超时后 abort |

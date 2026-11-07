@@ -161,14 +161,14 @@ def advanced_index(label, done):
 场景编号与目录名全局统一，完整对照表见 `../../99-cross-language/scenario-matrix.md`。
 公共底座概念在 `../../00-foundations/`，先读那一层再来做场景，否则只会抄代码。
 
-进度：**{}/30**（由 `scripts/refresh_indexes.py` 自动扫描生成）
+进度：**{}/{}**（由 `scripts/refresh_indexes.py` 自动扫描生成）
 
 {}
 
 ## 完成一个场景的判据
 
 能不看代码回答三个问题：故障是怎么发生的？这门语言用哪个机制解决？换成另一门语言时机制换成什么？
-""".format(label, n, "\n".join(blocks))
+""".format(label, n, len(ALL_SCENARIOS), "\n".join(blocks))
 
 
 def load_conclusions():
@@ -179,7 +179,8 @@ def load_conclusions():
     out = {}
     for line in p.read_text(encoding="utf-8").splitlines():
         parts = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(parts) >= 8 and re.fullmatch(r"[A-F]\d{2}", parts[0]):
+        # 场景编号 A01~F03，基础知识编号 01~24，两者都要保留
+        if len(parts) >= 8 and re.fullmatch(r"[A-F]\d{2}|\d{2}", parts[0]):
             out[parts[0]] = parts[-1]
     return out
 
@@ -203,7 +204,9 @@ def matrix(status, conclusions=None):
     bstatus = {d: basics_done(d, e) for d, _, e in LANGS}
     for i, (_, topic) in enumerate(BASICS):
         cells = ["已实现" if bstatus[d][i] else "待补" for d, _, _ in LANGS]
-        lines.append("| {:02d} | {} | {} | 待填 |".format(i + 1, topic, " | ".join(cells)))
+        code = "{:02d}".format(i + 1)
+        lines.append("| {} | {} | {} | {} |".format(
+            code, topic, " | ".join(cells), conclusions.get(code, "待填")))
     lines.append("""
 ## 五个机制速查（其余场景对照时反复用到）
 
@@ -226,9 +229,10 @@ def progress_table(status, bstatus):
             "| `00-foundations/` 六块文档与配置 | 完成 |"]
     for d, label, _ in LANGS:
         rows.append("| {} `basics/` | {}/24 |".format(label, sum(bstatus[d])))
-        rows.append("| {} `advanced/` | {}/30 |".format(label, sum(status[d].values())))
+        rows.append("| {} `advanced/` | {}/{} |".format(
+            label, sum(status[d].values()), len(ALL_SCENARIOS)))
     rows.append("| `06-elective/` | 说明已完成，代码未开始 |")
-    rows.append("| `99-cross-language/` | 矩阵自动生成，差异结论随场景补齐 |")
+    rows.append("| `99-cross-language/` | 矩阵自动生成，28 个场景 + 24 课结论已填满 |")
     return "\n".join(rows)
 
 
@@ -261,8 +265,9 @@ def main():
     readme.write_text(text, encoding="utf-8")
 
     for d, label, _ in LANGS:
-        print("{}: basics {}/24, advanced {}/30".format(
-            label, sum(bstatus[d]), sum(status[d].values())))
+        print("{}: basics {}/{}, advanced {}/{}".format(
+            label, sum(bstatus[d]), len(BASICS),
+            sum(status[d].values()), len(ALL_SCENARIOS)))
 
 
 if __name__ == "__main__":
